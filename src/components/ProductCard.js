@@ -15,10 +15,6 @@ const ProductCard = ({ products}) => {
             <h5>{products?.title}</h5>
             <p>{products?.price}</p>
             <p>{products?.new === true ? "신제품" : ""}</p>
-            <div>{products.size?.map((item, index) => (
-                <label key={index}>{item}&nbsp;</label>
-            ))}
-            </div>
 
         </div>
     );
