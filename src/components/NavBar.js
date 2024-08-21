@@ -1,12 +1,24 @@
-import React from 'react';
-import {faSearch, faUser} from "@fortawesome/free-solid-svg-icons";
+import React, {useState} from 'react';
+import {faSearch, faUser, faBars} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../App-before.css";
 import {useNavigate} from "react-router-dom";
+import {useMediaQuery} from 'react-responsive';
+
+export const Mobile = ({children}) => {
+    const isMobile = useMediaQuery({query: '(max-width: 768px)'});
+    return <>{isMobile && children}</>
+}
+
+export const Pc = ({children}) => {
+    const isPc = useMediaQuery({query : '(min-width: 769px)'});
+    return <>{isPc && children}</>
+}
 
 const NavBar = ({ authenticate, setAuthenticate }) => {
 
     const menuList = [ '여성', 'Division', '남성', '신생아&유아아동', 'H&M', 'HomeSale', '지속가능성' ];
+    const [ isToggle, setIsToggle ] = useState(false);
     const navigate = useNavigate();
 
     const checkPage = () =>{
@@ -27,6 +39,11 @@ const NavBar = ({ authenticate, setAuthenticate }) => {
 
     return (
         <div className='nav-bar'>
+            <Mobile>
+            <div className='nav-bar_toggleBtn' onClick={() => {setIsToggle(!isToggle)}}>
+                <FontAwesomeIcon icon={faBars} />
+            </div>
+            </Mobile>
             <div className="login-group">
                 <div className="login-btn" onClick={checkPage}>
                       <div >
@@ -37,19 +54,21 @@ const NavBar = ({ authenticate, setAuthenticate }) => {
                     <img src="https://www.hm.com/entrance/assets/bundle/img/HM-Share-Image.jpg" alt="Logo" style={{width:200}} />
                 </div>
             </div>
-            <div className="menu-group">
-                <div className="menu-list">
-                    <ul className="menu-item">
-                        {menuList.map((item, index) => (
-                            <li key={index}>{item}</li>
-                        ))}
-                    </ul>
+                <div className="menu-group">
+                    <div className="menu-list">
+                        <Pc>
+                            <ul className="menu-item">
+                                {menuList.map((item, index) => (
+                                    <li key={index}>{item}</li>
+                                    ))}
+                            </ul>
+                        </Pc>
+                    </div>
+                    <div className='search-box'>
+                        <input type="text"  onKeyDown={onSubmit} />
+                        <FontAwesomeIcon icon={faSearch} width={20}/>
+                    </div>
                 </div>
-                <div className='search-box'>
-                    <input type="text"  onKeyDown={onSubmit} />
-                    <FontAwesomeIcon icon={faSearch} width={20}/>
-                </div>
-            </div>
         </div>
     );
 };

@@ -16,6 +16,8 @@ import PrivateRoute from "./route/PrivateRoute";
 // 5-1. 로그아웃 이후에는 상품 디테일 페이지를 볼 수 없다. 로그인 페이지로 접속된다.
 // 6. 로그인아웃 버튼은 진행상황에 따라 변한다.
 // 7. 상품 검색이 가능하다.
+
+
 function App() {
     const [ authenticate, setAuthenticate ] = useState(false); // true면 로그인 상태
 
@@ -24,14 +26,14 @@ function App() {
     }, [authenticate])
 
     return (
-    <div className='App'>
-        <NavBar authenticate={authenticate} setAuthenticate={setAuthenticate}/>
-      <Routes>
-          <Route path="/" element={<ProductAll/>} />
-          <Route path="/login" element={<Login setAuthenticate={setAuthenticate}/> }  />
-          <Route path="/products/:id" element={<PrivateRoute authenticate={authenticate}/>} />
-      </Routes>
-    </div>
+        <div className='App'>
+            <NavBar authenticate={authenticate} setAuthenticate={setAuthenticate}/>
+            <Routes>
+              <Route path="/" element={<ProductAll/>} />
+              <Route path="/login" element={<Login setAuthenticate={setAuthenticate}/> }  />
+              <Route path="/products/:id" element={<PrivateRoute authenticate={authenticate}/>} />
+            </Routes>
+        </div>
     );
 }
 

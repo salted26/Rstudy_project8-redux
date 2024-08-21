@@ -8,11 +8,14 @@
 }
 
 .nav-bar {
-    width: 100%;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
+    padding: 12px;
+}
+
+.navBar_toggleBtn {
+    display: none;
 }
 
 .logo-img {
@@ -47,15 +50,14 @@
     flex-direction: row;
     align-items: baseline;
     justify-content: space-around;
+    width: 100%;
 }
 
 .menu-item {
-    padding: 10px;
-
     display: flex;
-    flex-direction: row;
-    align-items: center;
     list-style: none;
+    justify-content: space-around;
+    width: 100%;
 }
 
 .menu-item > li {
@@ -129,3 +131,17 @@
     width: 30%;
 }
 
+@media screen and(max-width: 700px) {
+    .nav-bar {
+        justify-content: space-between;
+    }
+    .menu-item {
+        display: none;
+    }
+    .nav-bar_toggleBtn {
+        display: flex;
+    }
+    .nav-bar_icons .login {
+        display: none;
+    }
+}
