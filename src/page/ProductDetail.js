@@ -19,7 +19,7 @@ const ProductDetail = () => {
         getProductDetail();
     }, [getProductDetail]);
 
-    console.log(product);
+    console.log(product)
 
     return (
         <div className='productDetail'>
@@ -35,10 +35,11 @@ const ProductDetail = () => {
                             <div>
                                 <h5><b>{product?.title}</b></h5>
                             </div>
-                            <div>{product?.price}</div>
+                            <div>{ product?.choice === true ? "Conscious Choice" : ""}</div>
+                            <div>₩ {product?.price}</div>
                             <div>
                                 <Form.Select size="sm" aria-label="Default select example" style={{width:150}}>
-                                    <option>choice size</option>
+                                    <option value="">사이즈</option>
                                     {product.size?.map((size, index) => (
                                         <option key={index} value={size}>{size}</option>
                                     ))}

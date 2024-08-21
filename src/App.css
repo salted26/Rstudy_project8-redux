@@ -84,7 +84,7 @@
 }
 
 .productCard:hover {
-    width: 22rem;
+    width: 20rem;
 }
 
 .productCard > img {
@@ -109,7 +109,7 @@
 }
 
 .product_info > img {
-    max-width:25rem;
+    min-width:10rem;
     width: 100%;
 }
 
@@ -128,3 +128,4 @@
 .login {
     width: 30%;
 }
+

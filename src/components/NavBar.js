@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {faSearch, faUser} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../App-before.css";
@@ -16,6 +16,13 @@ const NavBar = ({ authenticate, setAuthenticate }) => {
         }
         setAuthenticate(false);
         navigate("/login")
+    }
+
+    const onSubmit = async (e) => {
+        if(e.key === 'Enter'){
+            let searchKey = e.target.value;
+            navigate(`/?q=${searchKey}`);
+        }
     }
 
     return (
@@ -39,7 +46,7 @@ const NavBar = ({ authenticate, setAuthenticate }) => {
                     </ul>
                 </div>
                 <div className='search-box'>
-                    <input type="text"/>&nbsp;&nbsp;
+                    <input type="text"  onKeyDown={(e)=>onSubmit(e)} />
                     <FontAwesomeIcon icon={faSearch} width={20}/>
                 </div>
             </div>

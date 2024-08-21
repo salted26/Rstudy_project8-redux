@@ -1,21 +1,29 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import ProductCard from "../components/ProductCard";
 import {Container, Row, Col} from "react-bootstrap";
+import {useSearchParams} from "react-router-dom";
 
 const ProductAll = () => {
 
     const [products, setProducts] = useState([]);
+    const [ query ] = useSearchParams();
 
-    const getProducts = async () => {
-        let url = "http://localhost:5000/products";
-        let response = await fetch(url)
-        let data = await response.json()
-        setProducts(data);
-    }
+    const getProducts = useCallback( async () => {
+        try {
+            let searchKeyword = query.get("q") || "";
+            let url = `http://localhost:5000/products?q=${searchKeyword}`;
+            let response = await fetch(url);
+            let data = await response.json();
+            console.log(url, data)
+            setProducts(data);
+        } catch (err) {
+            console.log(err);
+        }
+    },[query])
 
     useEffect(() => {
-        getProducts()
-    }, []);
+        getProducts();
+    }, [query, getProducts]);
 
     return (
         <Container>
