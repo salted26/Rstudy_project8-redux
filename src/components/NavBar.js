@@ -1,8 +1,9 @@
 import React, {useEffect} from 'react';
 import {faSearch, faUser} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "../App-before.css";
+import "../App.css";
 import {useNavigate} from "react-router-dom";
+import SideBar from "./SideBar";
 
 const NavBar = ({ authenticate, setAuthenticate }) => {
 
@@ -32,12 +33,13 @@ const NavBar = ({ authenticate, setAuthenticate }) => {
         <div className='nav-bar'>
             <div className="login-group">
                 <div className="login-btn" onClick={checkPage}>
-                    <div >
-                        <FontAwesomeIcon icon={faUser} />&nbsp;{ authenticate !== true ? "로그인" : "로그아웃" }
+                    <div>
+                        <FontAwesomeIcon icon={faUser}/>&nbsp;{authenticate !== true ? "로그인" : "로그아웃"}
                     </div>
                 </div>
-                <div className="logo-img" onClick={()=> navigate("/")}>
-                    <img src="https://www.hm.com/entrance/assets/bundle/img/HM-Share-Image.jpg" alt="Logo" style={{width:200}} />
+                <div className="logo-img" onClick={() => navigate("/")}>
+                    <img src="https://www.hm.com/entrance/assets/bundle/img/HM-Share-Image.jpg" alt="Logo"
+                         style={{width: 200}}/>
                 </div>
             </div>
             <div className="menu-group">
@@ -49,9 +51,12 @@ const NavBar = ({ authenticate, setAuthenticate }) => {
                     </ul>
                 </div>
                 <div className='search-box'>
-                    <input type="text"  onKeyDown={onSubmit} />
+                    <input type="text" onKeyDown={onSubmit}/>
                     <FontAwesomeIcon icon={faSearch} width={20}/>
                 </div>
+            </div>
+            <div className="toggle">
+                <SideBar menuList={menuList} />
             </div>
         </div>
     );
