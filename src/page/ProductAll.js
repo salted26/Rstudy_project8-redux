@@ -11,10 +11,11 @@ const ProductAll = () => {
     const getProducts = useCallback( async () => {
         try {
             let searchKeyword = query.get("q") || "";
+            console.log(typeof searchKeyword);
             let url = `http://localhost:5000/products?q=${searchKeyword}`;
             let response = await fetch(url);
             let data = await response.json();
-            console.log(url, data)
+            console.log(data)
             setProducts(data);
         } catch (err) {
             console.log(err);
