@@ -36,6 +36,7 @@
     width: 100%;
     display: flex;
     justify-content: flex-end;
+    cursor: pointer;
 }
 
 .btn {
@@ -134,7 +135,7 @@
 }
 
 .toggle {
-    width: 100%;
+    width: 400px;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -146,7 +147,7 @@
     position: fixed;
     top: 0;
     bottom: 0;
-    width: 500px;
+    width: 60%;
     background: #fff;
     padding: 40px 0;
     box-sizing: border-box;
@@ -167,8 +168,8 @@
         .list-group{
             display: block;
         }
-        .list-group-close {
-            font-size: 24px;
-        }
+    }
+    .login-btn {
+        display: none;
     }
 }

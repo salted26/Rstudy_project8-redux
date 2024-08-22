@@ -1,4 +1,4 @@
-import './App-before.css';
+import './App.css';
 import {Route, Routes} from "react-router-dom";
 import ProductAll from "./page/ProductAll";
 import NavBar from "./components/NavBar";
@@ -25,7 +25,6 @@ function App() {
 
     return (
     <div className='App'>
-
         <NavBar authenticate={authenticate} setAuthenticate={setAuthenticate}/>
       <Routes>
           <Route path="/" element={<ProductAll/>} />

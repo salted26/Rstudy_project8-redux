@@ -56,7 +56,7 @@ const NavBar = ({ authenticate, setAuthenticate }) => {
                 </div>
             </div>
             <div className="toggle">
-                <SideBar menuList={menuList} />
+                <SideBar menuList={menuList} authenticate={authenticate}/>
             </div>
         </div>
     );
