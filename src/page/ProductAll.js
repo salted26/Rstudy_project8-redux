@@ -12,7 +12,7 @@ const ProductAll = () => {
         try {
             let searchKeyword = query.get("q") || "";
             console.log(typeof searchKeyword);
-            let url = `http://localhost:5000/products?q=${searchKeyword}`;
+            let url = `https://my-json-server.typicode.com/salted26/repo/products?q=${searchKeyword}`;
             let response = await fetch(url);
             let data = await response.json();
             console.log(data)
