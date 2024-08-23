@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useRef} from 'react';
 import {faSearch, faUser} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../App.css";
@@ -9,6 +9,7 @@ const NavBar = ({ authenticate, setAuthenticate }) => {
 
     const menuList = [ '여성', 'Division', '남성', '신생아&유아아동', 'H&M', 'HomeSale', '지속가능성' ];
     const navigate = useNavigate();
+    const keywordRef = useRef();
 
     const checkPage = () =>{
         if(authenticate){
@@ -21,13 +22,15 @@ const NavBar = ({ authenticate, setAuthenticate }) => {
 
     const onSubmit = async (e) => {
         if(e.key === 'Enter'){
-            let searchKey = e.target.value;
+            let searchKey = keywordRef.current.value;
             navigate(`?q=${searchKey}`);
         }
     }
 
-    useEffect(() => {
-    }, []);
+    const handleSearch = () => {
+        keywordRef.current.value="";
+        navigate(`/`);
+    }
 
     return (
         <div className='nav-bar'>
@@ -37,7 +40,7 @@ const NavBar = ({ authenticate, setAuthenticate }) => {
                         <FontAwesomeIcon icon={faUser}/>&nbsp;{authenticate !== true ? "로그인" : "로그아웃"}
                     </div>
                 </div>
-                <div className="logo-img" onClick={() => navigate("/")}>
+                <div className="logo-img" onClick={handleSearch}>
                     <img src="https://www.hm.com/entrance/assets/bundle/img/HM-Share-Image.jpg" alt="Logo"
                          style={{width: 200}}/>
                 </div>
@@ -51,7 +54,7 @@ const NavBar = ({ authenticate, setAuthenticate }) => {
                     </ul>
                 </div>
                 <div className='search-box'>
-                    <input type="text" onKeyDown={onSubmit}/>
+                    <input type="text" onKeyDown={onSubmit} ref={keywordRef}/>
                     <FontAwesomeIcon icon={faSearch} width={20}/>
                 </div>
             </div>

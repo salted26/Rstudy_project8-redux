@@ -138,8 +138,8 @@
     width: 400px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
-    align-items: flex-end;
+    justify-content: space-between;
+    align-items: inherit;
 }
 
 .list-group {
@@ -147,7 +147,7 @@
     position: fixed;
     top: 0;
     bottom: 0;
-    width: 60%;
+    width: 70%;
     background: #fff;
     padding: 40px 0;
     box-sizing: border-box;
@@ -157,7 +157,7 @@
 .list-group > li {
     list-style: none;
 }
-@media only screen and (max-width: 768px)  {
+@media only screen and (max-width: 768px) {
     .menu-group {
         display: none;
     }
@@ -171,5 +171,11 @@
     }
     .login-btn {
         display: none;
+    }
+    .row > .product{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
 }
