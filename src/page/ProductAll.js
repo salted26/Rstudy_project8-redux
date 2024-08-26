@@ -1,24 +1,24 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useEffect} from 'react';
 import ProductCard from "../components/ProductCard";
 import {Container, Row, Col} from "react-bootstrap";
 import {useSearchParams} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {productAction} from "../redux/action/productAction";
 
 const ProductAll = () => {
 
-    const [products, setProducts] = useState([]);
+    const products = useSelector(state => state.productList);
     const [ query ] = useSearchParams();
+    const dispatch = useDispatch();
 
     const getProducts = useCallback( async () => {
         try {
             const searchKeyword = query.get('q') || '';
-            let url = `https://my-json-server.typicode.com/salted26/Rstudy_project8/products?q=${searchKeyword}`;
-            const response = await fetch(url);
-            const data = await response.json();
-            setProducts(data)
+            dispatch(productAction.getProducts(searchKeyword));
         } catch (error) {
             console.log(error)
         }
-    }, [query, setProducts])
+    }, [query, dispatch])
 
 
     useEffect(() => {
