@@ -15,17 +15,17 @@ const SideBar = ({ menuList, authenticate }) => {
     };
 
     return (
-        <div className="logical-not">
+        <div>
             <Button
                 onClick={handleClick}
                 variant="information">
                 <img src ="https://static.vecteezy.com/system/resources/thumbnails/001/500/312/small_2x/bullet-menu-icon-free-vector.jpg" alt="menu" style={{width:35}}/>
             </Button>
-
             {!toggle ?
+            <div className="toggle-list">
                 <ul className="list-group">
-                    <li className="list-group-close" onClick={handleClick} style={{cursor: "pointer"}}>
-                        <img src="https://img.icons8.com/ios7/600w/000000/delete-sign.png" alt="close" style={{width:20}}/>
+                    <li className="list-group-close" onClick={handleClick}>
+                        <img src="https://img.icons8.com/ios7/600w/000000/delete-sign.png" alt="close"/>
                     </li>
                     <li className="list-group-item" onClick={()=> navigate("/login")}>
                         <FontAwesomeIcon icon={faUser}/>&nbsp;{authenticate !== true ? "로그인" : "로그아웃"}
@@ -34,6 +34,7 @@ const SideBar = ({ menuList, authenticate }) => {
                         <li className="list-group-item" key={index}>{item}</li>
                     ))}
                 </ul>
+            </div>
                 :
                 <></>
             }

@@ -33,36 +33,39 @@ const NavBar = ({ authenticate, setAuthenticate }) => {
     }
 
     return (
-        <div className='nav-bar'>
-            <div className="login-group">
-                <div className="login-btn" onClick={checkPage}>
-                    <div>
-                        <FontAwesomeIcon icon={faUser}/>&nbsp;{authenticate !== true ? "로그인" : "로그아웃"}
+        <div className="nav">
+            <div className='nav-bar'>
+                <div className="login-group">
+                    <div className="login-btn" onClick={checkPage}>
+                        <div>
+                            <FontAwesomeIcon icon={faUser}/>&nbsp;{authenticate !== true ? "로그인" : "로그아웃"}
+                        </div>
+                    </div>
+                    <div className="logo-img" onClick={handleSearch}>
+                        <img src="https://www.hm.com/entrance/assets/bundle/img/HM-Share-Image.jpg" alt="Logo"
+                             style={{width: 200}}/>
                     </div>
                 </div>
-                <div className="logo-img" onClick={handleSearch}>
-                    <img src="https://www.hm.com/entrance/assets/bundle/img/HM-Share-Image.jpg" alt="Logo"
-                         style={{width: 200}}/>
-                </div>
-            </div>
-            <div className="menu-group">
-                <div className="menu-list">
-                    <ul className="menu-item">
-                        {menuList.map((item, index) => (
-                            <li key={index}>{item}</li>
-                        ))}
-                    </ul>
-                </div>
-                <div className='search-box'>
-                    <input type="text" onKeyDown={onSubmit} ref={keywordRef}/>
-                    <FontAwesomeIcon icon={faSearch} width={20}/>
+                <div className="menu-group">
+                    <div className="menu-list">
+                        <ul className="menu-item">
+                            {menuList.map((item, index) => (
+                                <li key={index}>{item}</li>
+                            ))}
+                        </ul>
+                    </div>
+                    <div className='search-box'>
+                        <input type="text" onKeyDown={onSubmit} ref={keywordRef}/>
+                        <FontAwesomeIcon icon={faSearch} width={20}/>
+                    </div>
                 </div>
             </div>
             <div className="toggle">
                 <SideBar menuList={menuList} authenticate={authenticate}/>
             </div>
         </div>
-    );
+)
+    ;
 };
 
 export default NavBar;
