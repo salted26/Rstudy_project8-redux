@@ -1,25 +1,22 @@
-import React, {useCallback, useEffect, useState} from 'react'
+import React, {useCallback, useEffect} from 'react'
 import {Button, Col, Container, Form, Row} from 'react-bootstrap';
 import { useParams } from 'react-router-dom'
 import "../App.css"
-
+import {useDispatch, useSelector} from "react-redux";
+import {productAction} from "../redux/action/productAction";
 
 const ProductDetail = () => {
     let { id } = useParams();
-    const [ product, setProduct ] = useState('');
+    const dispatch = useDispatch();
+    const product = useSelector((state) => state.product.product);
 
     const getProductDetail= useCallback( async () => {
-        let url = `https://my-json-server.typicode.com/salted26/Rstudy_project8/products/${id}`;
-        let response = await fetch(url);
-        let data = await response.json();
-        setProduct(data);
-    }, [id, setProduct])
+        dispatch(productAction.getProductDetail(id))
+    }, [id, dispatch])
 
     useEffect(()=>{
         getProductDetail();
-    }, [getProductDetail]);
-
-    console.log(product)
+    }, [id, dispatch, getProductDetail]);
 
     return (
         <div className='productDetail'>

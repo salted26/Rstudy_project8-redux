@@ -39,12 +39,22 @@
 .login-btn {
     width: 100%;
     display: flex;
+    flex-direction: row;
     justify-content: flex-end;
+    align-items: center;
     cursor: pointer;
 }
 
-.btn {
-    width: 100%;
+.login > .btn {
+    width: 4rem
+}
+
+.login > .btn:hover {
+    border: none;
+}
+
+.btn{
+    width: 100%
 }
 
 .menu-group {

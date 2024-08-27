@@ -1,10 +1,10 @@
 import './App.css';
 import {Route, Routes} from "react-router-dom";
 import ProductAll from "./page/ProductAll";
-import NavBar from "./components/NavBar";
-import {useEffect, useState} from "react";
-import Login from "./page/Login";
 import PrivateRoute from "./route/PrivateRoute";
+import LoginRoute from "./route/LoginRoute";
+import NavBar from "./components/NavBar";
+import NavBarRoute from "./route/NavBarRoute";
 
 // 1. 로그인, 전체상품, 상품디테일 페이지 구성
 // 1-1. Navigation bar 만들기
@@ -17,19 +17,14 @@ import PrivateRoute from "./route/PrivateRoute";
 // 6. 로그인아웃 버튼은 진행상황에 따라 변한다.
 // 7. 상품 검색이 가능하다.
 function App() {
-    const [ authenticate, setAuthenticate ] = useState(false); // true면 로그인 상태
-
-    useEffect(() => {
-        console.log(authenticate)
-    }, [authenticate])
-
     return (
     <div className='App'>
-        <NavBar authenticate={authenticate} setAuthenticate={setAuthenticate}/>
+        {/*<NavBarRoute />*/}
+        <NavBar />
       <Routes>
           <Route path="/" element={<ProductAll/>} />
-          <Route path="/login" element={<Login setAuthenticate={setAuthenticate}/> }  />
-          <Route path="/products/:id" element={<PrivateRoute authenticate={authenticate}/>} />
+          <Route path="/login" element={<LoginRoute />}  />
+          <Route path="/products/:id" element={<PrivateRoute />} />
       </Routes>
     </div>
     );

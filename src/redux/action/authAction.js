@@ -1,10 +1,20 @@
-﻿function loginUser(searchKeyword) {
+﻿
+function login(username, password, authenticate) {
     return async (dispatch, getState) => {
-        const url = `https://my-json-server.typicode.com/salted26/Rstudy_project8/products?q=${searchKeyword}`;
-        const response = await fetch(url);
-        const data = await response.json();
-        dispatch({type: 'LOGIN_SUCCESS', payload: {data}});
+        dispatch({type: 'LOGIN_SUCCESS', payload: {username, password, authenticate}});
     }
 }
 
-export const authAction={loginUser}
+function logout(authenticate) {
+    return async (dispatch, getState) => {
+        dispatch({type: 'LOGOUT_SUCCESS', payload: {authenticate}});
+    }
+}
+
+function getAuthenticate(authenticate) {
+    return async (dispatch, getState) => {
+        dispatch({type: 'AUTHENTICATE', payload: {authenticate}});
+    }
+}
+
+export const authAction={login, logout, getAuthenticate}
